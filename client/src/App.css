@@ -5,5 +5,7 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #FAFAFA;
+  background-color: #f7f2f7;
+  height: 100vh;
+  width: 100vw;
 }

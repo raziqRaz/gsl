@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { Icon } from "@mui/material";
+import { Icon, IconButton, TextField } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,7 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Header() {
   return (
     <Box sx={{backgroundColor: "white",width:"auto" }}>
-      <AppBar position="static" sx={{ backgroundColor: "white" }}>
+      <AppBar position="static" sx={{ backgroundColor: "#fff", boxShadow: 2,height:"100px" }} >
         <Toolbar>
           <Typography
             noWrap
@@ -69,20 +69,34 @@ export default function Header() {
               fontSize: "xxl",
               color: "#1F56AE",
               textDecoration: "none",
+              marginTop:"30px"
             }}
           >
             Global Study Link
           </Typography>
-          <Search sx={{ color: "#ACB1C6" }}>
+          <Search sx={{ color: "#ACB1C6",marginTop:"30px",marginLeft:"100px" }}>
             <SearchIconWrapper>
-              <SearchIcon />
+              <SearchIcon size={25} />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
+             {/* <TextField
+                fullWidth
+                id="standard-bare"
+                variant="outlined"
+                defaultValue="How can we help"
+                InputProps={{
+                  endAdornment: (
+                    <IconButton>
+                      <SearchIcon size={25} />
+                    </IconButton>
+                  ),
+                }}
+              /> */}
           </Search>
-          <Icon sx={{ color: "#ACB1C6" }}>
+          <Icon sx={{ color: "#ACB1C6",marginTop:"30px" }}>
             <IoNotificationsOutline size={25} />
           </Icon>
         </Toolbar>

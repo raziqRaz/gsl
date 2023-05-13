@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const SidebarContainer = styled.div`
-overflow-y: scroll;
   position: fixed;
   top: 0;
   width: ${(props) => (props.act ? '0px' : '68px')};
@@ -87,32 +86,9 @@ export const LogoContainer = styled(StyledNavLink)`
 `;
 
 export const LogoOut = styled(StyledNavLink)`
-  padding-top: 30%;
+  padding-top: 10%;
   text-decoration: none;
   border-style: none;
   padding-bottom: 2rem;
-`;
-
-//Version 5 de react router
-export const ItemContainer = styled.a`
-  background-colors: ${(props) => (props.active ? 'red' : 'blue')};
-  display: grid;
-  grid-template-columns: max-content max-content;
-  column-gap: 1rem;
-  padding: 1rem 0 0.5rem 1.5rem;
-  margin-top: 1rem;
-  text-decoration: none;
-  border-left-style: solid;
-  border-left-width: 2px;
-  border-color: white;
-  i {
-    font-size: 1.25rem;
-    color: #606781;  }
-  span {
-    color: #606781;
-    font-weight: 700;
-  }
-  &:hover {
-    opacity: 100%;
-  }
+  margin-right: 20px
 `;
