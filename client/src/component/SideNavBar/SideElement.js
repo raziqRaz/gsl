@@ -16,7 +16,7 @@ export const SidebarContainer = styled.div`
     padding: 1rem 1rem 0 0;
     background-color: #141E3C;
     margin-left: 0px;
-    width: ${(props) => (!props.act ? '180px' : '70px')};
+    width: ${(props) => (!props.act ? '200px' : '70px')};
   }
 `;
 
@@ -25,7 +25,10 @@ export const SidebarMenuContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
+  overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+}
 `;
 
 export const StyledNavLink = styled(Link)`
@@ -36,8 +39,6 @@ column-gap: 1rem;
 padding: 1rem 0 0.5rem 1.5rem;
 margin-top: 1rem;
 text-decoration: none;
-border-left-style: solid;
-border-left-width: 2px;
 border-color: white;
 i {
   font-size: 1.25rem;
@@ -59,7 +60,7 @@ span {
   }
   
 `;
-
+// border-style: ${(props) => (!props.act ? 'solid' : 'none')};
 export const LogoContainer = styled(StyledNavLink)`
   opacity: 100%;
   text-decoration: none;
@@ -67,7 +68,7 @@ export const LogoContainer = styled(StyledNavLink)`
 
   margin: -7px;
   margin-left: 0px;
-  border-style: ${(props) => (!props.act ? 'solid' : 'none')};
+ 
   i:hover {
     margin-left: -7px;
     transition: 0.1s;

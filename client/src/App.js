@@ -7,6 +7,8 @@ import Sidebar from './component/SideNavBar/SideNav';
 import HOME from './component/HOME/Home.js';
 import Header from './component/Header/Header';
 import Sample from './component/HOME/Sample';
+import LeadsMain from './component/Leads/LeadsMain'
+import All_leadListTable from './component/Leads/All_leadListTable';
 
 function App() {
   const [isHover, setIsHover] = useState(true);
@@ -27,7 +29,10 @@ function App() {
      <Routes>
     <Route path="/" element={<HOME toggle={isHover}/>} />
     
-    <Route path="/Leads" element={<Sample toggle={isHover}/>} />
+    <Route path="/sample" element={<Sample toggle={isHover}/>} />
+    <Route path="/Leads" element={<LeadsMain toggle={isHover} tab1={<All_leadListTable/>}/>} />
+
+    
 
     
 
