@@ -12,13 +12,19 @@ export const SidebarContainer = styled.div`
   transition: 0.5s;
   z-index: var(--z-fixed);
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 280px) {
     padding: 1rem 1rem 0 0;
     background-color: #141E3C;
     margin-left: 0px;
-    width: ${(props) => (!props.act ? '200px' : '70px')};
+    width: ${(props) => (!props.act ? '250px' : '108px')};
   }
 `;
+// @media only screen and (max-width: 375px) {
+//   padding: 1rem 1rem 0 0;
+//   background-color: #141E3C;
+//   margin-left: 0px;
+//   width: ${(props) => (!props.act ? '100px' : '80px')};
+// }
 
 export const SidebarMenuContainer = styled.div`
   height: 100%;
@@ -41,13 +47,15 @@ margin-top: 1rem;
 text-decoration: none;
 border-color: white;
 i {
-  font-size: 1.25rem;
-  color: #606781;
+  font-size: 2.10rem;
+  margin-left:20px;
+  color: #999fb5;
 }
 
 span {
   color: #606781;
-  font-weight: 700;
+  font-weight: 900;
+  font-size: 1.25rem;
 }
 &:hover {
   opacity: 100%;
@@ -65,10 +73,9 @@ export const LogoContainer = styled(StyledNavLink)`
   opacity: 100%;
   text-decoration: none;
   padding-bottom: 2rem;
-
+  backgroun-color:#fff !important;
   margin: -7px;
   margin-left: 0px;
- 
   i:hover {
     margin-left: -7px;
     transition: 0.1s;
@@ -79,9 +86,10 @@ export const LogoContainer = styled(StyledNavLink)`
     margin-left: -7px;
   }
   img {
-    width:60px;
-    height:60px;
- 
+    width:90px;
+    height:auto;
+    background-color: white;
+    border-radius: 76px;
   }
 
 `;
@@ -91,5 +99,5 @@ export const LogoOut = styled(StyledNavLink)`
   text-decoration: none;
   border-style: none;
   padding-bottom: 2rem;
-  margin-right: 20px
+  margin-left: -25px;
 `;

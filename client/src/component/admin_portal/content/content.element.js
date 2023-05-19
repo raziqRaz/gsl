@@ -5,7 +5,7 @@ export const MainContainer = styled.div`
   width: 100vw;
   margin-top :10px;
   margin-left: ${(props) =>
-    !props.active ? '25px' : '100px'};
+    !props.active ? '80px' : '150px'};
   padding: ${(props) =>
     !props.active ? '200px' : 'calc(var(--na v-width) + 2rem)'};
   transition: 2s;

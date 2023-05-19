@@ -1,0 +1,1108 @@
+Table "leads" {
+"id" bigint
+"first_name" varchar(255)
+"last_name" varchar(255)
+"email" varchar(255)
+"gender" text
+"mobile" text
+"whatsapp_no" text
+"dob" timestamp
+"country_code" varchar(255)
+"img_url" varchar(255)
+"lead_owner" int
+"lead_source" int
+"prefered_country"  varchar(255)
+"ref_no" varchar(255)
+"university_id" int
+"fk_status_id" int
+"counsilor_id" int
+"is_active" int
+"is_enabled" int
+"created_by" bigint
+"updated_by" bigint
+"remember_token" varchar(100)
+"created_at" timestamp
+"updated_at" timestamp
+
+Indexes {
+  email [unique, name: "users_email_unique"]
+  university_id [name: "university_id_foreign"]
+}
+}
+
+
+Table "users" {
+"id" bigint
+"first_name" varchar(255)
+"last_name" varchar(255)
+"password" varchar(255)
+"email" varchar(255)
+"gender" text
+"mobile" text
+"whatsapp_no" text
+"dob" timestamp
+"country_code" varchar(255)
+"img_url" varchar(255)
+"lead_id" text [default: NULL]
+"fk_role_id" text
+"ref_no" varchar(255)
+"last_login" timestamp
+"login_count" bigint
+"is_app_logined" tinyint(1)
+"isnotification" bigint
+"is_partner" tinyint(1)
+"is_channel_partner" tinyint(1)
+"is_active" tinyint(1) [not null, default: "0"]
+"is_enabled" tinyint(1) [not null, default: "0"]
+"created_by" bigint
+"updated_by" bigint
+"created_at" timestamp
+"updated_at" timestamp
+
+Indexes {
+  email [unique, name: "users_email_unique"]
+  fk_role_id [name: "users_fk_role_id_foreign"]
+
+}
+}
+
+Table "partner" {
+"id" bigint
+"partner_id" bigint
+"partner_category" tinyint(1)
+"created_at" timestamp
+"updated_at" timestamp
+Indexes {
+  partner_id [name: "partner_id_foreign"]
+}
+}
+
+
+
+Table "privilage" {
+"id" bigint [pk, not null, increment]
+"privilege" text
+"key" text
+"value" text
+"icon" text
+"title" text
+"route_action" text
+"privilage_order" bigint
+"is_active" tinyint
+"is_enabled" tinyint
+"created_at" timestamp
+"updated_at" timestamp
+}
+
+Table "role" {
+"id" bigint
+"role" text
+"description" text
+"is_active" tinyint(1)
+"is_enabled" tinyint(1)
+"created_at" timestamp
+"created_by" bigint
+"updated_at" timestamp
+"updated_by" bigint
+}
+
+Table "role_privilege_mapping" {
+"fk_role_id" bigint
+"fk_privilege_id" bigint
+"actions" text
+"is_active" tinyint(1)
+"is_enabled" tinyint(1)
+"created_by" bigint
+"created_at" timestamp
+"updated_by" bigint
+"updated_at" timestamp
+}
+
+Table "followUp" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "task_ownner_id" bigint [pk, not null, increment]
+  "activity" varchar(255) [default: NULL]
+  "schedule_date" timestamp [default: NULL]
+  "is_done" tinyint(1) [not null, default: "0"]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+  task_ownner_id [name: "users_task_ownner_id_foreign"]
+}
+}
+
+
+Table "user_personal_details" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "passport_name" varchar(255) [not null]
+  "passport_location" bigint [pk, not null, increment]
+  "permanent_contry" varchar(255) [default: NULL]
+  "permanent_state" varchar(255) [default: NULL]
+  "permanent_address_line1" varchar(255) [default: NULL]
+  "permanent_address_line2" varchar(255) [default: NULL]
+  "permanent_city" varchar(255) [default: NULL]
+  "permanent_post_code" varchar(255) [default: NULL]
+
+  "current_contry" varchar(255) [default: NULL]
+  "current_state" varchar(255) [default: NULL]
+  "current_address_line1" varchar(255) [default: NULL]
+  "current_address_line2" varchar(255) [default: NULL]
+  "current_city" varchar(255) [default: NULL]
+  "current_post_code" varchar(255) [default: NULL]
+  "refer_emergency_name" varchar(255) [not null]
+  "refer_emergency_mobile" text [not null]
+  "refer_emergency_email" varchar(255) [not null]
+  "refer_emergency_relationship" varchar(255) [not null]
+
+  "is_done" tinyint(1) [not null, default: "0"]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+
+
+}
+}
+
+Table "user_education_details" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "high_school_completion_year" varchar(255) [not null]
+  "high_school_completion_board" bigint [pk, not null, increment]
+  "high_school_completion_score" varchar(255) [default: NULL]
+
+
+ "higher_secondary_completion_year" varchar(255) [not null]
+  "higher_secondary_completion_steam" bigint [pk, not null, increment]
+  "higher_secondary_completion_board" bigint [pk, not null, increment]
+  "higher_secondary_completion_score" varchar(255) [default: NULL]
+
+  "acadamic_history_cource" varchar(255) [not null]
+  "acadamic_history_institution" bigint [pk, not null, increment]
+  "acadamic_history_country" bigint [pk, not null, increment]
+  "acadamic_history_level_of_study" varchar(255) [default: NULL]
+  "acadamic_history_start_date" timestamp [default: NULL]
+  "acadamic_history_end_date" timestamp [default: NULL]
+  "acadamic_history_result_info" timestamp [default: NULL]
+
+   "english_and_standardise_test_taken" bigint [pk, not null, increment]
+  "english_and_standardise_date_of_test_score" varchar(255) [default: NULL]
+  "english_and_standardise_start_date" timestamp [default: NULL]
+  "english_and_standardise_end_date" timestamp [default: NULL]
+  "english_and_standardise_result_info" timestamp [default: NULL]
+
+
+
+
+  "current_contry" varchar(255) [default: NULL]
+  "current_state" varchar(255) [default: NULL]
+  "current_address_line1" varchar(255) [default: NULL]
+  "current_address_line2" varchar(255) [default: NULL]
+  "current_city" varchar(255) [default: NULL]
+  "current_post_code" varchar(255) [default: NULL]
+
+
+  "refer_emergency_name" varchar(255) [not null]
+  "refer_emergency_mobile" text [not null]
+  "refer_emergency_email" varchar(255) [not null]
+  "refer_emergency_relationship" varchar(255) [not null]
+
+  "is_done" tinyint(1) [not null, default: "0"]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+
+
+}
+}
+
+Table "sop_questions" {
+  "id" bigint [pk, not null, increment]
+  "question" varchar(255) [not null]
+    "created_at" timestamp [default: NULL]
+    "is_active" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+Table "user_sop_answer" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "question_id" varchar(255) [default: NULL]
+  "answer" varchar(255) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+  question_id [name: "question_id_foreign"]
+}
+}
+
+
+Table "travals" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "travals_question" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+}
+}
+
+Table "user_travals_answer" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "question_id" varchar(255) [default: NULL]
+  "answer" varchar(255) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+  question_id [name: "question_id_foreign"]
+}
+}
+
+Table "immigrations" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+ "immigrations_question" bigint [pk, not null, increment]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+}
+}
+
+
+Table "user_immigrations_answer" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "question_id" varchar(255) [default: NULL]
+  "answer" varchar(255) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+  question_id [name: "question_id_foreign"]
+}
+}
+
+
+Table "visa_rejection" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+"visa_rejection_question" varchar(255) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+}
+}
+
+Table "visa_rejection_answer" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "question_id" varchar(255) [default: NULL]
+  "answer" varchar(255) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+  question_id [name: "question_id_foreign"]
+}
+}
+
+
+Table "medical_background" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "medical_background_question" bigint [pk, not null, increment]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+}
+}
+
+Table "medical_background_answer" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "question_id" varchar(255) [default: NULL]
+  "answer" varchar(255) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+  question_id [name: "question_id_foreign"]
+}
+}
+
+
+Table "criminal_background" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "criminal_background_question" bigint [pk, not null, increment]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+}
+}
+
+Table "criminal_background_answer" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "question_id" varchar(255) [default: NULL]
+  "answer" varchar(255) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+  question_id [name: "question_id_foreign"]
+}
+}
+
+Table "user_work_details" {
+  "id" bigint [pk, not null, increment]
+  "user_id" bigint [pk, not null, increment]
+  "work_title" varchar(255) [not null]
+  "work_name_of_organization" bigint [pk, not null, increment]
+  "work_address_of_organization" varchar(255) [default: NULL]
+  "work_phone_no_of_organization" varchar(255) [default: NULL]
+  "work_start_date" varchar(255) [default: NULL]
+  "work_end_date" varchar(255) [default: NULL]
+
+  "work_referee_name" varchar(255) [default: NULL]
+  "work_referee_position" varchar(255) [default: NULL]
+  "work_referee_work_email" varchar(255) [default: NULL]
+  "work_referee_institution" varchar(255) [default: NULL]
+
+  "work_referee_how_long_you_know" varchar(255) [default: NULL]
+  "work_referee_mobile" varchar(255) [default: NULL]
+  "work_referee_relationship" varchar(255) [default: NULL]
+  "work_referee_address" varchar(255) [default: NULL]
+
+  "permanent_post_code" varchar(255) [default: NULL]
+
+
+  "is_done" tinyint(1) [not null, default: "0"]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  user_id [name: "users_user_id_foreign"]
+}
+}
+
+Table "university" {
+  "id" bigint [pk, not null, increment]
+  "university_name" bigint [pk, not null, increment]
+  "university_rank" varchar(255) [not null]
+  "university_country" bigint [pk, not null, increment]
+  "university_established_year" varchar(255) [default: NULL]
+  "university_international_fee" varchar(255) [default: NULL]
+  "about_university" varchar(255) [default: NULL]
+  "universuty_qualification" varchar(255) [default: NULL]
+  "university_tests" varchar(255) [default: NULL]
+  "university_work_experience" varchar(255) [default: NULL]
+  "university_remarks" varchar(255) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+}
+
+Table "university_images" {
+  "id" bigint [pk, not null, increment]
+  "university_id" bigint [pk, not null, increment]
+  "university_image_url" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  university_id [name: "university_id_foreign"]
+}
+}
+
+
+Table "university_videos" {
+  "id" bigint [pk, not null, increment]
+  "university_id" bigint [pk, not null, increment]
+  "university_videos_url" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  university_id [name: "university_id_foreign"]
+}
+}
+
+
+Table "university_master" {
+  "id" bigint [pk, not null, increment]
+  "university_master" bigint [pk, not null, increment]
+  "university_master_type_id" varchar(255) [not null]
+  "university_master_icon_url" varchar(C255) [not null]
+  "university_id" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  university_id [name: "university_id_foreign"]
+}
+}
+
+Table "university_type" {
+  "id" bigint [pk, not null, increment]
+  "name" bigint [pk, not null, increment]
+  "is_active" default('1')
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+}
+
+Table "courses" {
+  "id" bigint [pk, not null, increment]
+  "university_id" varchar(255) [not null]
+  "admisson_id" varchar(255) [not null]
+  "course_title" bigint [pk, not null, increment]
+  "about_course" varchar(255) [not null]
+  "course_syllabus" varchar(C255) [not null]
+  "course_level" varchar(C255) [not null]
+  "course_category" varchar(C255) [not null]
+  "course_duration" varchar(C255) [not null]
+  "course_intake" varchar(C255) [not null]
+  "course_fee_term" varchar(C255) [not null]
+  "course_fee_ammount" varchar(C255) [not null]
+  "course_sslc_percentage" varchar(C255) [not null]
+  "course_hss_percentage" varchar(C255) [not null]
+  "course_ug_percentage" varchar(C255) [not null]
+  "course_pg_percentage" varchar(C255) [not null]
+  "course_ietsc_percentage" varchar(C255) [not null]
+  "course_tofelsc_percentage" varchar(C255) [not null]
+  "course_pte_percentage" varchar(C255) [not null]
+  "internship_experience" varchar(C255) [not null]
+  "extracurricular_activity" varchar(C255) [not null]
+  "equivalent_organization_experience" varchar(C255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  university_id [name: "university_id_foreign"]
+}
+}
+
+
+Table "Tickets" {
+  "id" bigint [pk, not null, increment]
+  "userId" varchar(255) [not null]
+  "date" timestamp [not null, increment]
+  "subject" varchar(255) [not null]
+  "counsellor" varchar(C255) [not null]
+  "status" varchar(C255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  userId [name: "userId_foreign"]
+}
+}
+
+Table "Enquiries" {
+  "id" bigint [pk, not null, increment]
+  "ID" varchar(255) [not null]
+  "name" timestamp [not null, increment]
+  "email" varchar(255) [not null]
+  "mobile" varchar(C255) [not null]
+  "message" varchar(C255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+}
+
+
+Table "chat" {
+  "id" bigint [pk, not null, increment]
+  "userId" varchar(255) [not null]
+  "studentId" varchar(255) [not null]
+  "date" timestamp [not null, increment]
+  "message" text[text]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  userId [name: "userId_foreign"]
+  studentId [name: "studentId_foreign"]
+
+}
+}
+
+
+Table "refferal" {
+  "id" bigint [pk, not null, increment]
+  "reffered_user_id" varchar(255) [not null]
+  "student_name" varchar(255) [not null]
+  "email" varchar(255) [not null]
+  "phone" varchar(255) [not null]
+  "country" varchar(255) [not null]
+  "destination" varchar(255) [not null]
+  "status" varchar(255) [not null]
+  "date" timestamp [not null, increment]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  reffered_user_id [name: "reffered_user_id_foreign"]
+}
+}
+
+
+
+Table "landing_page_destination" {
+  "id" bigint [pk, not null, increment]
+  "destination_name" varchar(255) [not null]
+  "destination_url" varchar(255) [not null]
+  "destination_guide_url" varchar(255) [not null]
+  "destination_description" varchar(255) [not null]
+  "destination_top_university_types" text[]
+  "destination_top_courses_types" text[]
+  "destination_crequirment_documets" text[]
+  "destination_admission_procedure" text[]
+  "destination_estiate" varchar(255) [not null]
+  "status" varchar(255) [not null]
+  "date" timestamp [not null, increment]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+}
+
+Table "landing_page_destination_FAQ" {
+  "id" bigint [pk, not null, increment]
+  "destination_faq_qeustion" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+}
+
+Table "landing_page_service" {
+  "id" bigint [pk, not null, increment]
+  "service_name" varchar(255) [not null]
+  "service_icon_url" varchar(255) [not null]
+  "service_description" varchar(255) [not null]
+  "sec1_description" varchar(255) [not null]
+  "sec2_description" text[]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+}
+
+Table "landing_page_service_feature" {
+  "id" bigint [pk, not null, increment]
+  "feature_name" varchar(255) [not null]
+  "service_id" varchar(255) [not null]
+  "service_icon_url" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  service_id [name: "service_id_foreign"]
+}
+}
+
+
+
+Table "landing_page_news" {
+  "id" bigint [pk, not null, increment]
+  "news_image" varchar(255) [not null]
+  "news_title" varchar(255) [not null]
+  "news_categories" varchar(255) [not null]
+  "news_tags" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "landing_page_blog" {
+  "id" bigint [pk, not null, increment]
+  "blog_image" varchar(255) [not null]
+  "blog_title" varchar(255) [not null]
+  "blog_categories" varchar(255) [not null]
+  "blog_tags" varchar(255) [not null]
+  "blog_slug" varchar(255) [not null]
+  "blog_seo_keywords" text[]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+///HR
+Table "human_resources_holidays" {
+  "id" bigint [pk, not null, increment]
+  "holiday_month" varchar(255) [not null]
+  "total_working_day" varchar(255) [not null]
+  "holiday_name" varchar(255) [not null]
+  "date" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "human_resources_leave" {
+  "id" bigint [pk, not null, increment]
+  "leave_employee_name" varchar(255) [not null]
+  "leave_employee_id" varchar(255) [not null]
+  "leave_type" varchar(255) [not null]
+  "leave_start_date" varchar(255) [not null]
+  "leave_end_date" varchar(255) [not null]
+  "leave_duration" varchar(255) [not null]
+  "leave_status" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  leave_employee_id [name: "leave_employee_id_foreign"]
+}
+
+}
+
+
+Table "human_resources_payslip" {
+  "id" bigint [pk, not null, increment]
+  "payslip_employe_name" varchar(255) [not null]
+  "payslip_ID" varchar(255) [not null]
+  "payslip_employe_id" varchar(255) [not null]
+  "payslip_employe_role" varchar(255) [not null]
+  "payslip_month" varchar(255) [not null]
+  "payslip_percentage" varchar(255) [not null]
+  "payslip_url" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  payslip_employe_id [name: "payslip_employee_id_foreign"]
+}
+
+}
+
+Table "human_resources_job" {
+  "id" bigint [pk, not null, increment]
+  "job_title" varchar(255) [not null]
+  "job_location" varchar(255) [not null]
+  "job_type" varchar(255) [not null]
+  "job_experience" varchar(255) [not null]
+  "job_vacancies" varchar(255) [not null]
+  "job_description" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+// /report_page
+
+// employee incentive_recived
+Table "employee_incentive_recived" {
+  "id" bigint [pk, not null, increment]
+  "application_id" varchar(255) [not null]
+  "application_user_id" varchar(255) [not null]
+  "incentive_category" varchar(255) [not null]
+  "incentive_amount" varchar(255) [not null]
+  "extra_incentive" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+Indexes {
+  application_user_id [name: "application_user_id_foreign"]
+}
+}
+
+// university commission
+Table "unniversity_commission" {
+  "id" bigint [pk, not null, increment]
+  "university_name" varchar(255) [not null]
+  "territory" varchar(255) [not null]
+  "territory_restriction" varchar(255) [not null]
+  "ug" varchar(255) [not null]
+  "pg" varchar(255) [not null]
+  "ps" varchar(255) [not null]
+  "fo" varchar(255) [not null]
+  "pre-m" varchar(255) [not null]
+  "phd" varchar(255) [not null]
+  "authority_case" varchar(255) [not null]
+  "course_type" varchar(255) [not null]
+  "course_exclusion" varchar(255) [not null]
+  "notes" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+// partner_commission
+Table "partner_commission" {
+  "id" bigint [pk, not null, increment]
+  "application_id" varchar(255) [not null]
+  "commition_category" varchar(255) [not null]
+  "commission_ammount" varchar(255) [not null]
+  "status" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+
+}
+
+
+// setting
+
+// country_master
+Table "country_master" {
+  "id" bigint [pk, not null, increment]
+  "country_code" varchar(255) [not null]
+  "country_name" varchar(255) [not null]
+  "country_phone_code" varchar(255) [not null]
+  "updated_by" varchar(255) [not null]
+  "updated_date" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+// state_master
+Table "state_master" {
+  "id" bigint [pk, not null, increment]
+  "country" varchar(255) [not null]
+  "state" varchar(255) [not null]
+  "updated_by" varchar(255) [not null]
+  "updated_date" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+// city_master
+Table "city_master" {
+  "id" bigint [pk, not null, increment]
+  "state" varchar(255) [not null]
+  "city" varchar(255) [not null]
+  "updated_by" varchar(255) [not null]
+  "updated_date" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+// create_notification
+Table "notification" {
+  "id" bigint [pk, not null, increment]
+  "notification_type" varchar(255) [not null]
+  "targated_user_id" text[]
+  "branch" varchar(255) [not null]
+  "notification_title" varchar(255) [not null]
+  "notification_description" varchar(255) [not null]
+  "notification_image_url" varchar(255) [not null]
+  "notification_link" varchar(255) [not null]
+  "notification_date" varchar(255) [not null]
+  "updated_by" varchar(255) [not null]
+  "updated_date" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+} 
+
+
+
+// create_notification_via_email_or_number
+Table "notification_via_email_or_number" {
+  "id" bigint [pk, not null, increment]
+  "notification_via" varchar(255) [not null]
+  "targated_users" varchar(255) [not null]
+  "notification_title" varchar(255) [not null]
+  "notification_description" varchar(255) [not null]
+  "notification_date" varchar(255) [not null]
+  "updated_by" varchar(255) [not null]
+  "updated_date" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+// admisson
+Table "admisson" {
+  "id" bigint [pk, not null, increment]
+  "admisson_name" varchar(255) [not null]
+  "admisson_description" text[]
+  "admisson_icon_url" varchar(255) [not null]
+  "updated_by" varchar(255) [not null]
+  "updated_date" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+} 
+
+
+// visa
+Table "visa_template" {
+  "id" bigint [pk, not null, increment]
+  "visa_name" varchar(255) [not null]
+  "visa_description" text[]
+  "visa_icon_url" varchar(255) [not null]
+  "updated_by" varchar(255) [not null]
+  "updated_date" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+} 
+
+
+// accounts
+
+// employee_category
+Table "employee_category" {
+  "id" bigint [pk, not null, increment]
+  "roll_name" varchar(255) [not null]
+  "branch" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+} 
+
+
+// subscription
+Table "subscription" {
+  "id" bigint [pk, not null, increment]
+  "plan_name" varchar(255) [not null]
+  "validity" varchar(255) [not null]
+  "type" varchar(255) [not null]
+  "amount" varchar(255) [not null]
+  "description" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+} 
+
+
+// employee_incentive_created
+Table "employee_incentive_created" {
+  "id" bigint [pk, not null, increment]
+  "employee_destination" varchar(255) [not null]
+  "branch" varchar(255) [not null]
+  "direct_university_enrolled_application_count_from" varchar(255) [not null]
+  "direct_university_enrolled_application_count_to" varchar(255) [not null]
+  "B2B_percentagec" varchar(255) [not null]
+  "B2B_ammount" varchar(255) [not null]
+  "indirect_university_percentage" varchar(255) [not null]
+  "indirect_university_ammount" varchar(255) [not null]
+  "GUS_percentage" varchar(255) [not null]
+  "GUS_ammount" varchar(255) [not null]
+  "ukdirect_percentage" varchar(255) [not null]
+  "ukdirect_ammount" varchar(255) [not null]
+  "IELTS_percentage" varchar(255) [not null]
+  "IELTS_ammount" varchar(255) [not null]
+  "uk_office_direct_university_percentage" varchar(255) [not null]
+  "uk_office_direct_university_ammount" varchar(255) [not null]
+  "bonus_enrolled_application_from" varchar(255) [not null]
+  "bonus_enrolled_application_to" varchar(255) [not null]
+  "bonus_amount" varchar(255) [not null]
+  "extra_incentive_per_enrollment_percentage" varchar(255) [not null]
+  "extra_incentive_per_enrollment_amount" varchar(255) [not null]
+  "other_study_abroad_amount" varchar(255) [not null]
+  "updated_by" varchar(255) [not null]
+  "updated_date" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+} 
+
+
+
+// accommodation
+Table "accommodation_student" {
+  "id" bigint [pk, not null, increment]
+  "student_id" varchar(255) [not null]
+  "plan" varchar(255) [not null]
+  "validity" varchar(255) [not null]
+  "plan_type" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+} 
+
+
+Table "accommodation_provider" {
+  "id" bigint [pk, not null, increment]
+  "provider_id" varchar(255) [not null]
+  "plan" varchar(255) [not null]
+  "validity" varchar(255) [not null]
+  "plan_type" varchar(255) [not null]
+  "ammount" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+} 
+
+
+
+// ielts coaching
+
+
+Table "ielts_course" {
+  "id" bigint [pk, not null, increment]
+  "course_name" varchar(255) [not null]
+  "course_about" varchar(255) [not null]
+  "course_fees" varchar(255) [not null]
+  "course_type" varchar(255) [not null]
+  "course_url" varchar(255) [not null]
+  "course_max_student" varchar(255) [not null]
+  "video_classes_url" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+} 
+
+Table "ielts_video_meet" {
+  "id" bigint [pk, not null, increment]
+  "live_course_id" varchar(255) [not null]
+  "live_class_name" varchar(255) [not null]
+  "live_class_about" varchar(255) [not null]
+  "live_class_fees" varchar(255) [not null]
+  "live_class_type" varchar(255) [not null]
+  "live_class_total_student" varchar(255) [not null]
+  "live_class_date" varchar(255) [not null]
+  "live_class_time" varchar(255) [not null]
+  "live_class_meet_chanel" varchar(255) [not null]
+  "live_class_link" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+
+
+Table "ielts_zoom_cofigration" {
+  "id" bigint [pk, not null, increment]
+  "course_id" varchar(255) [not null]
+  "meet_name" varchar(255) [not null]
+  "host_key" varchar(255) [not null]
+  "email" varchar(255) [not null]
+  "password" varchar(255) [not null]
+  "meeting_id" varchar(255) [not null]
+  "meeting_link" varchar(255) [not null]
+  "is_hosted" varchar(255) [not null]
+  "is_participant" varchar(255) [not null]
+  "is_waiting_room" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+} 
+
+
+Table "ielts_video_class" {
+  "id" bigint [pk, not null, increment]
+  "course_id" varchar(255) [not null]
+  "video_title" varchar(255) [not null]
+  "video_url" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+} 
+
+
+
+
+Ref: "users"."whatsapp_no" < "followUp"."is_done"
+
+Ref: "users"."id" < "user_personal_details"."permanent_post_code"
+
+Ref: "users"."fk_role_id" < "followUp"."updated_at"
+
+Ref: "users"."id" < "user_education_details"."current_state"
+
+Ref: "users"."id" < "sop_questions"."id"
+
+Ref: "users"."id" < "travals"."id"
+
+Ref: "users"."id" < "user_work_details"."user_id"
+
+Ref: "users"."id" < "leads"."id"
+
+Ref: "leads"."id" < "followUp"."id"
+
+Ref: "leads"."id" < "user_personal_details"."passport_location"
+
+Ref: "leads"."id" < "user_education_details"."user_id"
+
+Ref: "leads"."id" < "travals"."id"
+
+Ref: "leads"."id" < "sop_questions"."id"
+
+Ref: "sop_questions"."id" < "user_sop_answer"."id"
+
+Ref: "leads"."id" < "user_sop_answer"."id"
+
+Ref: "user_immigrations_answer"."question_id" < "immigrations"."id"
+
+Ref: "user_travals_answer"."question_id" < "travals"."id"
+
+Ref: "visa_rejection_answer"."question_id" < "visa_rejection"."id"
+
+Ref: "medical_background_answer"."question_id" < "medical_background"."id"
+
+Ref: "criminal_background_answer"."question_id" < "criminal_background"."id"
+
+Ref: "leads"."id" < "user_travals_answer"."user_id"
+
+Ref: "leads"."id" < "user_immigrations_answer"."user_id"
+
+Ref: "leads"."id" < "visa_rejection_answer"."user_id"
+
+Ref: "leads"."id" < "medical_background_answer"."user_id"
+
+Ref: "leads"."id" < "criminal_background"."user_id"
+
+
+Ref: "leads"."university_id" < "university"."id"
+
+Ref: "university"."id" < "university_videos"."id"
+
+Ref: "university"."id" < "university_images"."id"
+
+Ref: "university_master"."university_id" < "university"."id"
+
+Ref: "university_master"."university_master_type_id" < "university_type"."id"
+
+Ref: "courses"."university_id" < "university"."id"
+
+Ref: "leads"."id" < "Tickets"."id"
+
+
+Ref: "chat"."userId" < "users"."id"
+
+Ref: "leads"."id" < "chat"."studentId"
+
+Ref: "leads"."id" < "refferal"."reffered_user_id"
+
+Ref: "landing_page_destination"."id" < "landing_page_destination_FAQ"."id"
+
+Ref: "landing_page_service"."id" < "landing_page_service_feature"."service_id"
+
+Ref: "human_resources_leave"."leave_employee_id" < "users"."id"
+
+Ref: "human_resources_payslip"."payslip_employe_id" < "users"."id"
+
+Ref: "employee_incentive_recived"."application_user_id" < "users"."id"
+
+Ref: "notification"."targated_user_id" < "users"."id"
+
+Ref: "notification_via_email_or_number"."targated_users" < "users"."id"
+
+Ref: "ielts_video_meet"."live_course_id" < "ielts_course"."id"
+
+Ref: "ielts_zoom_cofigration"."course_id" < "ielts_course"."id"
+
+Ref: "ielts_video_class"."course_id" < "ielts_course"."id"
+
+Ref: "partner"."partner_id" < "users"."id"
+
+Ref: "role_privilege_mapping"."fk_privilege_id" < "privilage"."id"
+
+Ref: "role_privilege_mapping"."fk_role_id" < "role"."id"

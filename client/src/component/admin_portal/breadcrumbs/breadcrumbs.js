@@ -11,7 +11,7 @@ function handleClick(event) {
 export default function HeadBreadcrumbs(props) {
   return (
     <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs aria-label="breadcrumb">
+      <Breadcrumbs aria-label="breadcrumb" sx={{mt:7}}>
         <Link underline="hover" color="inherit" href={props?.head}>
          {props?.head}
         </Link>

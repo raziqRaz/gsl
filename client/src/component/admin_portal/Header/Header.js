@@ -62,14 +62,16 @@ export default function Header() {
             component="a"
             href="/"
             sx={{
-              ml: 13,
+              ml: 19,
               // fontFamily: 'sans-serifs',
               flexGrow: 1,
               fontWeight: 1000,
               fontSize: "xxl",
               color: "#1F56AE",
               textDecoration: "none",
-              marginTop:"30px"
+              marginTop:"30px",
+              display:{md:"block",sm:"block",xs:"none"}
+
             }}
           >
             Global Study Link
