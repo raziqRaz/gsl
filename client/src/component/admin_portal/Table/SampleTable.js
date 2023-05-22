@@ -19,8 +19,8 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { MainContainer } from '../content/content.element';
-import HeadBreadcrumbs from '../breadcrumbs/breadcrumbs';
+// import { MainContainer } from '../content/content.element';
+// import HeadBreadcrumbs from '../breadcrumbs/breadcrumbs';
 
 function createData(name, calories, fat, carbs, protein) {
   return {
@@ -199,7 +199,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          Nutrition
+          Leads Table
         </Typography>
       )}
 
@@ -293,10 +293,9 @@ export default function SampleTable(props) {
 
   return (
     <>
-    <MainContainer active={props.toggle}>
-    <HeadBreadcrumbs head='home' sechead="sample tabel"/>
-    <Box sx={{ width: props.toggle ? '93%' :"90%",mt:5}}>
-      <Paper sx={{ width: '95%'}}>
+    {/* <MainContainer active={props.toggle}> */}
+    <Box sx={{ width: props.toggle ? '90%' :"80%"}}>
+      <Paper sx={{ width: 'auto'}}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
@@ -375,7 +374,7 @@ export default function SampleTable(props) {
         />
       </Paper>
     </Box>
-    </MainContainer>
+    {/* </MainContainer> */}
     </>
   );
 }

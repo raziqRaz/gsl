@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
+import { Typography } from '@mui/material';
 
 function handleClick(event) {
   event.preventDefault();
@@ -11,7 +12,8 @@ function handleClick(event) {
 export default function HeadBreadcrumbs(props) {
   return (
     <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs aria-label="breadcrumb" sx={{mt:7}}>
+      <Breadcrumbs aria-label="breadcrumb" sx={{mt:2}}>
+      <Typography variant="h5" fontWeight='bold'>{props?.first}</Typography>
         <Link underline="hover" color="inherit" href={props?.head}>
          {props?.head}
         </Link>
@@ -22,7 +24,7 @@ export default function HeadBreadcrumbs(props) {
         >
           {props?.sechead}
         </Link>
-        {/* <Typography color="text.primary">Breadcrumbs</Typography> */}
+        {/* <Typography color="text.primary">{props?.sechead}</Typography> */}
       </Breadcrumbs>
     </div>
   );

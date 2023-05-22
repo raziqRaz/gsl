@@ -6,9 +6,9 @@ import BasicTabs from '../Tabs/TabsMain'
 function LeadsMain(props) {
   return (
     <>
-    <MainContainer active={props.toggle}>
-    <HeadBreadcrumbs head="Home" sechead="lead"/>
-    <BasicTabs tab1={props.tab1}/>
+    <MainContainer active={props.toggle} >
+     <HeadBreadcrumbs head='home' sechead="sample tabel" first="Leads"/>
+    <BasicTabs tab1={props.tab1} head="Home" sechead="lead"/>
     </MainContainer>
     </>
   )

@@ -37,7 +37,7 @@ function App() {
 
     <Route path="/table" element={<SampleTable toggle={isHover}/>} />
 
-    <Route path="/Leads" element={<LeadsMain toggle={isHover} tab1={<All_leadListTable/>}/>} />
+    <Route path="/Leads" element={<LeadsMain toggle={isHover} tab1={<All_leadListTable toggle={isHover}/>}/>} />
 
     
 
