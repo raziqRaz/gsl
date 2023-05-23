@@ -3,14 +3,14 @@ import './App.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Sidebar from './component/admin_portal/SideNavBar/SideNav';
-import HOME from './component/admin_portal/HOME/Home.js';
-import Header from './component/admin_portal/Header/Header';
-import Sample from './component/admin_portal/HOME/Sample';
-import LeadsMain from './component/admin_portal/Leads/LeadsMain'
-import All_leadListTable from './component/admin_portal/Leads/All_leadListTable';
+import Sidebar from './component/SideNavBar/SideNav';
+import HOME from './component/HOME/Home.js';
+import Header from './component/Header/Header';
+import Sample from './component/HOME/Sample';
+import LeadsMain from './component/Leads/LeadsMain'
+import All_leadListTable from './component/Leads/All_leadListTable';
 import Login from './component/auth/login/Login';
-import SampleTable from './component/admin_portal/Table/SampleTable';
+import SampleTable from './component/Table/SampleTable';
 
 function App() {
   const [isHover, setIsHover] = useState(true);

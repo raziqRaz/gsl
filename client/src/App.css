@@ -2,9 +2,12 @@
 .main {
   margin: 0;
   padding: 0;
-  overflow: hidden;
   background-color: #fafafa;
   width: auto;
   height: auto;
-  font-size: large;
+  overflow: hidden;
+ 
+}
+.main::-webkit-scrollbar {
+  display: none;
 }
